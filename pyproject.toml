@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68.0", "grpcio-tools>=1.60.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "instserver-proto"
+version = "0.1.0"
+description = "gRPC proto definitions + compiled stubs for InstServer ↔ LabMaster4 communication"
+authors = [{ name = "Quantaser", email = "tina@quantaser.com" }]
+requires-python = ">=3.10"
+dependencies = [
+    "grpcio>=1.60.0",
+    "protobuf>=5.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "grpcio-tools>=1.60.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["instserver_proto*"]

@@ -1,0 +1,148 @@
+syntax = "proto3";
+package instserver;
+
+// ═══════════════════════════════════════════
+// Control Plane — 強型別 protobuf
+// ═══════════════════════════════════════════
+
+service InstrumentServer {
+  // 實驗生命週期
+  rpc AssignExperiment(AssignReq) returns (StatusResp);
+  rpc SetInputs(SetInputsReq) returns (StatusResp);
+  rpc ConnectAll(SessionReq) returns (StatusResp);
+  rpc RunExperiment(SessionReq) returns (StatusResp);
+  rpc StopExperiment(SessionReq) returns (StatusResp);
+  rpc AbortExperiment(SessionReq) returns (StatusResp);
+  rpc DisconnectAll(SessionReq) returns (StatusResp);
+  rpc CleanExperiment(SessionReq) returns (StatusResp);
+
+  // Schema 查詢
+  rpc GetInputSchema(SchemaReq) returns (SchemaResp);
+  rpc GetExperimentList(Empty) returns (ExpListResp);
+
+  // 檔案操作
+  rpc ReadFile(FileReq) returns (FileResp);
+  rpc SaveFile(SaveFileReq) returns (StatusResp);
+  rpc CheckFileTime(FileTimeReq) returns (FileTimeResp);
+  rpc CreateFolder(FolderReq) returns (StatusResp);
+  rpc CopyFolder(CopyFolderReq) returns (StatusResp);
+
+  // 檔案列表
+  rpc ListTools(Empty) returns (FileListResp);
+  rpc ListTemplates(Empty) returns (FileListResp);
+
+  // ═══════════════════════════════════════════
+  // Data Plane — stream + msgpack payload
+  // ═══════════════════════════════════════════
+
+  // 即時實驗數據 streaming
+  rpc StreamUpdates(StreamReq) returns (stream DataFrame);
+
+  // 互動式程式碼 streaming
+  rpc RunCode(CodeReq) returns (stream CodeFrame);
+  rpc StopCode(SessionReq) returns (StatusResp);
+}
+
+// ── Control Plane Messages ──
+
+message Empty {}
+
+message SessionReq {
+  string session_id = 1;
+}
+
+message AssignReq {
+  string experiment_name = 1;
+}
+
+message StatusResp {
+  bool success = 1;
+  string session_id = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message SetInputsReq {
+  string session_id = 1;
+  bytes payload = 2;      // msgpack encoded dynamic input params
+}
+
+message SchemaReq {
+  string experiment_name = 1;
+}
+
+message SchemaResp {
+  bool success = 1;
+  bytes input_schema = 2;   // msgpack: input JSON definition
+  bytes output_schema = 3;  // msgpack: output JSON definition
+  string error = 4;
+}
+
+message ExpListResp {
+  repeated string experiments = 1;
+}
+
+message FileReq {
+  string script_name = 1;
+  string file_type = 2;       // "python" | "input" | "output" | "tool" | "template"
+}
+
+message FileResp {
+  bool success = 1;
+  string content = 2;
+  string error = 3;
+}
+
+message SaveFileReq {
+  string script_name = 1;
+  string file_type = 2;
+  string content = 3;
+}
+
+message FileTimeReq {
+  string script_name = 1;
+  string file_type = 2;
+  string timestamp = 3;
+}
+
+message FileTimeResp {
+  bool modified = 1;
+  string timestamp = 2;
+}
+
+message FolderReq {
+  string script_name = 1;
+}
+
+message CopyFolderReq {
+  string source_name = 1;
+  string dest_name = 2;
+}
+
+message FileListResp {
+  repeated string files = 1;
+}
+
+// ── Data Plane Messages ──
+
+message StreamReq {
+  string session_id = 1;
+}
+
+message DataFrame {
+  bytes payload = 1;      // msgpack encoded dynamic experiment data
+  string encoding = 2;    // "msgpack"
+  bool finished = 3;
+  string error = 4;
+}
+
+message CodeReq {
+  string session_id = 1;
+  string script_name = 2;
+}
+
+message CodeFrame {
+  repeated string stdout = 1;
+  repeated string stderr = 2;
+  bool finished = 3;
+}
