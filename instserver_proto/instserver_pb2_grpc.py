@@ -123,6 +123,16 @@ class InstrumentServerStub(object):
                 request_serializer=instserver__pb2.Empty.SerializeToString,
                 response_deserializer=instserver__pb2.FileListResp.FromString,
                 _registered_method=True)
+        self.GetCalibrationNode = channel.unary_unary(
+                '/instserver.InstrumentServer/GetCalibrationNode',
+                request_serializer=instserver__pb2.CalNodeRequest.SerializeToString,
+                response_deserializer=instserver__pb2.CalNodeResponse.FromString,
+                _registered_method=True)
+        self.SetCalibrationNode = channel.unary_unary(
+                '/instserver.InstrumentServer/SetCalibrationNode',
+                request_serializer=instserver__pb2.SetCalNodeRequest.SerializeToString,
+                response_deserializer=instserver__pb2.SetCalNodeResponse.FromString,
+                _registered_method=True)
         self.StreamUpdates = channel.unary_stream(
                 '/instserver.InstrumentServer/StreamUpdates',
                 request_serializer=instserver__pb2.StreamReq.SerializeToString,
@@ -137,6 +147,16 @@ class InstrumentServerStub(object):
                 '/instserver.InstrumentServer/StopCode',
                 request_serializer=instserver__pb2.SessionReq.SerializeToString,
                 response_deserializer=instserver__pb2.StatusResp.FromString,
+                _registered_method=True)
+        self.SubscribeMonitor = channel.unary_stream(
+                '/instserver.InstrumentServer/SubscribeMonitor',
+                request_serializer=instserver__pb2.MonitorSubscribeRequest.SerializeToString,
+                response_deserializer=instserver__pb2.MonitorData.FromString,
+                _registered_method=True)
+        self.ListMonitors = channel.unary_unary(
+                '/instserver.InstrumentServer/ListMonitors',
+                request_serializer=instserver__pb2.Empty.SerializeToString,
+                response_deserializer=instserver__pb2.MonitorListResponse.FromString,
                 _registered_method=True)
 
 
@@ -253,6 +273,19 @@ class InstrumentServerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetCalibrationNode(self, request, context):
+        """Calibration 參數存取（InstServer ↔ Backend）
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetCalibrationNode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StreamUpdates(self, request, context):
         """═══════════════════════════════════════════
         Data Plane — stream + msgpack payload
@@ -272,6 +305,19 @@ class InstrumentServerServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def StopCode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SubscribeMonitor(self, request, context):
+        """Monitor — 設施即時監控
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListMonitors(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -365,6 +411,16 @@ def add_InstrumentServerServicer_to_server(servicer, server):
                     request_deserializer=instserver__pb2.Empty.FromString,
                     response_serializer=instserver__pb2.FileListResp.SerializeToString,
             ),
+            'GetCalibrationNode': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCalibrationNode,
+                    request_deserializer=instserver__pb2.CalNodeRequest.FromString,
+                    response_serializer=instserver__pb2.CalNodeResponse.SerializeToString,
+            ),
+            'SetCalibrationNode': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetCalibrationNode,
+                    request_deserializer=instserver__pb2.SetCalNodeRequest.FromString,
+                    response_serializer=instserver__pb2.SetCalNodeResponse.SerializeToString,
+            ),
             'StreamUpdates': grpc.unary_stream_rpc_method_handler(
                     servicer.StreamUpdates,
                     request_deserializer=instserver__pb2.StreamReq.FromString,
@@ -379,6 +435,16 @@ def add_InstrumentServerServicer_to_server(servicer, server):
                     servicer.StopCode,
                     request_deserializer=instserver__pb2.SessionReq.FromString,
                     response_serializer=instserver__pb2.StatusResp.SerializeToString,
+            ),
+            'SubscribeMonitor': grpc.unary_stream_rpc_method_handler(
+                    servicer.SubscribeMonitor,
+                    request_deserializer=instserver__pb2.MonitorSubscribeRequest.FromString,
+                    response_serializer=instserver__pb2.MonitorData.SerializeToString,
+            ),
+            'ListMonitors': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListMonitors,
+                    request_deserializer=instserver__pb2.Empty.FromString,
+                    response_serializer=instserver__pb2.MonitorListResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -855,6 +921,60 @@ class InstrumentServer(object):
             _registered_method=True)
 
     @staticmethod
+    def GetCalibrationNode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/instserver.InstrumentServer/GetCalibrationNode',
+            instserver__pb2.CalNodeRequest.SerializeToString,
+            instserver__pb2.CalNodeResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SetCalibrationNode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/instserver.InstrumentServer/SetCalibrationNode',
+            instserver__pb2.SetCalNodeRequest.SerializeToString,
+            instserver__pb2.SetCalNodeResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def StreamUpdates(request,
             target,
             options=(),
@@ -925,6 +1045,60 @@ class InstrumentServer(object):
             '/instserver.InstrumentServer/StopCode',
             instserver__pb2.SessionReq.SerializeToString,
             instserver__pb2.StatusResp.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SubscribeMonitor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/instserver.InstrumentServer/SubscribeMonitor',
+            instserver__pb2.MonitorSubscribeRequest.SerializeToString,
+            instserver__pb2.MonitorData.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListMonitors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/instserver.InstrumentServer/ListMonitors',
+            instserver__pb2.Empty.SerializeToString,
+            instserver__pb2.MonitorListResponse.FromString,
             options,
             channel_credentials,
             insecure,
