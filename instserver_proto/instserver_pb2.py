@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10instserver.proto\x12\ninstserver\"\x07\n\x05\x45mpty\" \n\nSessionReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\"$\n\tAssignReq\x12\x17\n\x0f\x65xperiment_name\x18\x01 \x01(\t\"Q\n\nStatusResp\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x12\n\nsession_id\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\x12\r\n\x05\x65rror\x18\x04 \x01(\t\"3\n\x0cSetInputsReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\x12\x0f\n\x07payload\x18\x02 \x01(\x0c\"$\n\tSchemaReq\x12\x17\n\x0f\x65xperiment_name\x18\x01 \x01(\t\"Y\n\nSchemaResp\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x14\n\x0cinput_schema\x18\x02 \x01(\x0c\x12\x15\n\routput_schema\x18\x03 \x01(\x0c\x12\r\n\x05\x65rror\x18\x04 \x01(\t\"\"\n\x0b\x45xpListResp\x12\x13\n\x0b\x65xperiments\x18\x01 \x03(\t\"1\n\x07\x46ileReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x11\n\tfile_type\x18\x02 \x01(\t\";\n\x08\x46ileResp\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"F\n\x0bSaveFileReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x11\n\tfile_type\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\"H\n\x0b\x46ileTimeReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x11\n\tfile_type\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\"3\n\x0c\x46ileTimeResp\x12\x10\n\x08modified\x18\x01 \x01(\x08\x12\x11\n\ttimestamp\x18\x02 \x01(\t\" \n\tFolderReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\"7\n\rCopyFolderReq\x12\x13\n\x0bsource_name\x18\x01 \x01(\t\x12\x11\n\tdest_name\x18\x02 \x01(\t\"\x1d\n\x0c\x46ileListResp\x12\r\n\x05\x66iles\x18\x01 \x03(\t\"\x1e\n\x0e\x43\x61lNodeRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\"p\n\x0f\x43\x61lNodeResponse\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c\x12\x0c\n\x04unit\x18\x03 \x01(\t\x12\x12\n\nvalue_type\x18\x04 \x01(\t\x12\x0f\n\x07success\x18\x05 \x01(\x08\x12\r\n\x05\x65rror\x18\x06 \x01(\t\"I\n\x11SetCalNodeRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c\x12\x17\n\x0f\x65xperiment_name\x18\x03 \x01(\t\"6\n\x12SetCalNodeResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x1f\n\tStreamReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\"O\n\tDataFrame\x12\x0f\n\x07payload\x18\x01 \x01(\x0c\x12\x10\n\x08\x65ncoding\x18\x02 \x01(\t\x12\x10\n\x08\x66inished\x18\x03 \x01(\x08\x12\r\n\x05\x65rror\x18\x04 \x01(\t\"2\n\x07\x43odeReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\x12\x13\n\x0bscript_name\x18\x02 \x01(\t\"=\n\tCodeFrame\x12\x0e\n\x06stdout\x18\x01 \x03(\t\x12\x0e\n\x06stderr\x18\x02 \x03(\t\x12\x10\n\x08\x66inished\x18\x03 \x01(\x08\"0\n\x17MonitorSubscribeRequest\x12\x15\n\rmonitor_names\x18\x01 \x03(\t\"J\n\x0bMonitorData\x12\x14\n\x0cmonitor_name\x18\x01 \x01(\t\x12\x0f\n\x07payload\x18\x02 \x01(\x0c\x12\x14\n\x0ctimestamp_ms\x18\x03 \x01(\x03\"@\n\x13MonitorListResponse\x12)\n\x08monitors\x18\x01 \x03(\x0b\x32\x17.instserver.MonitorInfo\"@\n\x0bMonitorInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t2\xc0\x0c\n\x10InstrumentServer\x12\x41\n\x10\x41ssignExperiment\x12\x15.instserver.AssignReq\x1a\x16.instserver.StatusResp\x12=\n\tSetInputs\x12\x18.instserver.SetInputsReq\x1a\x16.instserver.StatusResp\x12<\n\nConnectAll\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12?\n\rRunExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12@\n\x0eStopExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12\x41\n\x0f\x41\x62ortExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12?\n\rDisconnectAll\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12\x41\n\x0f\x43leanExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12?\n\x0eGetInputSchema\x12\x15.instserver.SchemaReq\x1a\x16.instserver.SchemaResp\x12?\n\x11GetExperimentList\x12\x11.instserver.Empty\x1a\x17.instserver.ExpListResp\x12\x35\n\x08ReadFile\x12\x13.instserver.FileReq\x1a\x14.instserver.FileResp\x12;\n\x08SaveFile\x12\x17.instserver.SaveFileReq\x1a\x16.instserver.StatusResp\x12\x42\n\rCheckFileTime\x12\x17.instserver.FileTimeReq\x1a\x18.instserver.FileTimeResp\x12=\n\x0c\x43reateFolder\x12\x15.instserver.FolderReq\x1a\x16.instserver.StatusResp\x12?\n\nCopyFolder\x12\x19.instserver.CopyFolderReq\x1a\x16.instserver.StatusResp\x12\x38\n\tListTools\x12\x11.instserver.Empty\x1a\x18.instserver.FileListResp\x12<\n\rListTemplates\x12\x11.instserver.Empty\x1a\x18.instserver.FileListResp\x12M\n\x12GetCalibrationNode\x12\x1a.instserver.CalNodeRequest\x1a\x1b.instserver.CalNodeResponse\x12S\n\x12SetCalibrationNode\x12\x1d.instserver.SetCalNodeRequest\x1a\x1e.instserver.SetCalNodeResponse\x12?\n\rStreamUpdates\x12\x15.instserver.StreamReq\x1a\x15.instserver.DataFrame0\x01\x12\x37\n\x07RunCode\x12\x13.instserver.CodeReq\x1a\x15.instserver.CodeFrame0\x01\x12:\n\x08StopCode\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12R\n\x10SubscribeMonitor\x12#.instserver.MonitorSubscribeRequest\x1a\x17.instserver.MonitorData0\x01\x12\x42\n\x0cListMonitors\x12\x11.instserver.Empty\x1a\x1f.instserver.MonitorListResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10instserver.proto\x12\ninstserver\"\x07\n\x05\x45mpty\" \n\nSessionReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\"$\n\tAssignReq\x12\x17\n\x0f\x65xperiment_name\x18\x01 \x01(\t\"Q\n\nStatusResp\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x12\n\nsession_id\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\x12\r\n\x05\x65rror\x18\x04 \x01(\t\"3\n\x0cSetInputsReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\x12\x0f\n\x07payload\x18\x02 \x01(\x0c\"$\n\tSchemaReq\x12\x17\n\x0f\x65xperiment_name\x18\x01 \x01(\t\"Y\n\nSchemaResp\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x14\n\x0cinput_schema\x18\x02 \x01(\x0c\x12\x15\n\routput_schema\x18\x03 \x01(\x0c\x12\r\n\x05\x65rror\x18\x04 \x01(\t\"\"\n\x0b\x45xpListResp\x12\x13\n\x0b\x65xperiments\x18\x01 \x03(\t\"?\n\x07\x46ileReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x11\n\tfile_type\x18\x02 \x01(\t\x12\x0c\n\x04kind\x18\x03 \x01(\t\";\n\x08\x46ileResp\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"T\n\x0bSaveFileReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x11\n\tfile_type\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0c\n\x04kind\x18\x04 \x01(\t\"V\n\x0b\x46ileTimeReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x11\n\tfile_type\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x0c\n\x04kind\x18\x04 \x01(\t\"3\n\x0c\x46ileTimeResp\x12\x10\n\x08modified\x18\x01 \x01(\x08\x12\x11\n\ttimestamp\x18\x02 \x01(\t\".\n\tFolderReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x0c\n\x04kind\x18\x02 \x01(\t\"7\n\rCopyFolderReq\x12\x13\n\x0bsource_name\x18\x01 \x01(\t\x12\x11\n\tdest_name\x18\x02 \x01(\t\"\x1d\n\x0c\x46ileListResp\x12\r\n\x05\x66iles\x18\x01 \x03(\t\"\x1f\n\tStreamReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\"@\n\x0fStartMonitorReq\x12\x13\n\x0bscript_name\x18\x01 \x01(\t\x12\x18\n\x10interval_seconds\x18\x02 \x01(\x01\"O\n\tDataFrame\x12\x0f\n\x07payload\x18\x01 \x01(\x0c\x12\x10\n\x08\x65ncoding\x18\x02 \x01(\t\x12\x10\n\x08\x66inished\x18\x03 \x01(\x08\x12\r\n\x05\x65rror\x18\x04 \x01(\t\"2\n\x07\x43odeReq\x12\x12\n\nsession_id\x18\x01 \x01(\t\x12\x13\n\x0bscript_name\x18\x02 \x01(\t\"=\n\tCodeFrame\x12\x0e\n\x06stdout\x18\x01 \x03(\t\x12\x0e\n\x06stderr\x18\x02 \x03(\t\x12\x10\n\x08\x66inished\x18\x03 \x01(\x08\x32\xc8\x0c\n\x10InstrumentServer\x12\x41\n\x10\x41ssignExperiment\x12\x15.instserver.AssignReq\x1a\x16.instserver.StatusResp\x12=\n\tSetInputs\x12\x18.instserver.SetInputsReq\x1a\x16.instserver.StatusResp\x12<\n\nConnectAll\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12?\n\rRunExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12@\n\x0eStopExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12\x41\n\x0f\x41\x62ortExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12?\n\rDisconnectAll\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12\x41\n\x0f\x43leanExperiment\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12?\n\x0eGetInputSchema\x12\x15.instserver.SchemaReq\x1a\x16.instserver.SchemaResp\x12?\n\x11GetExperimentList\x12\x11.instserver.Empty\x1a\x17.instserver.ExpListResp\x12\x35\n\x08ReadFile\x12\x13.instserver.FileReq\x1a\x14.instserver.FileResp\x12;\n\x08SaveFile\x12\x17.instserver.SaveFileReq\x1a\x16.instserver.StatusResp\x12\x42\n\rCheckFileTime\x12\x17.instserver.FileTimeReq\x1a\x18.instserver.FileTimeResp\x12=\n\x0c\x43reateFolder\x12\x15.instserver.FolderReq\x1a\x16.instserver.StatusResp\x12?\n\nCopyFolder\x12\x19.instserver.CopyFolderReq\x1a\x16.instserver.StatusResp\x12\x38\n\tListTools\x12\x11.instserver.Empty\x1a\x18.instserver.FileListResp\x12<\n\rListTemplates\x12\x11.instserver.Empty\x1a\x18.instserver.FileListResp\x12\x43\n\x0cStartMonitor\x12\x1b.instserver.StartMonitorReq\x1a\x16.instserver.StatusResp\x12=\n\x0bStopMonitor\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12\x41\n\x10GetMonitorSchema\x12\x15.instserver.SchemaReq\x1a\x16.instserver.SchemaResp\x12:\n\x0cListMonitors\x12\x11.instserver.Empty\x1a\x17.instserver.ExpListResp\x12?\n\rStreamUpdates\x12\x15.instserver.StreamReq\x1a\x15.instserver.DataFrame0\x01\x12\x37\n\x07RunCode\x12\x13.instserver.CodeReq\x1a\x15.instserver.CodeFrame0\x01\x12:\n\x08StopCode\x12\x16.instserver.SessionReq\x1a\x16.instserver.StatusResp\x12?\n\rStreamMonitor\x12\x15.instserver.StreamReq\x1a\x15.instserver.DataFrame0\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -48,45 +48,31 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_EXPLISTRESP']._serialized_start=378
   _globals['_EXPLISTRESP']._serialized_end=412
   _globals['_FILEREQ']._serialized_start=414
-  _globals['_FILEREQ']._serialized_end=463
-  _globals['_FILERESP']._serialized_start=465
-  _globals['_FILERESP']._serialized_end=524
-  _globals['_SAVEFILEREQ']._serialized_start=526
-  _globals['_SAVEFILEREQ']._serialized_end=596
-  _globals['_FILETIMEREQ']._serialized_start=598
-  _globals['_FILETIMEREQ']._serialized_end=670
-  _globals['_FILETIMERESP']._serialized_start=672
-  _globals['_FILETIMERESP']._serialized_end=723
-  _globals['_FOLDERREQ']._serialized_start=725
-  _globals['_FOLDERREQ']._serialized_end=757
-  _globals['_COPYFOLDERREQ']._serialized_start=759
-  _globals['_COPYFOLDERREQ']._serialized_end=814
-  _globals['_FILELISTRESP']._serialized_start=816
-  _globals['_FILELISTRESP']._serialized_end=845
-  _globals['_CALNODEREQUEST']._serialized_start=847
-  _globals['_CALNODEREQUEST']._serialized_end=877
-  _globals['_CALNODERESPONSE']._serialized_start=879
-  _globals['_CALNODERESPONSE']._serialized_end=991
-  _globals['_SETCALNODEREQUEST']._serialized_start=993
-  _globals['_SETCALNODEREQUEST']._serialized_end=1066
-  _globals['_SETCALNODERESPONSE']._serialized_start=1068
-  _globals['_SETCALNODERESPONSE']._serialized_end=1122
-  _globals['_STREAMREQ']._serialized_start=1124
-  _globals['_STREAMREQ']._serialized_end=1155
-  _globals['_DATAFRAME']._serialized_start=1157
-  _globals['_DATAFRAME']._serialized_end=1236
-  _globals['_CODEREQ']._serialized_start=1238
-  _globals['_CODEREQ']._serialized_end=1288
-  _globals['_CODEFRAME']._serialized_start=1290
-  _globals['_CODEFRAME']._serialized_end=1351
-  _globals['_MONITORSUBSCRIBEREQUEST']._serialized_start=1353
-  _globals['_MONITORSUBSCRIBEREQUEST']._serialized_end=1401
-  _globals['_MONITORDATA']._serialized_start=1403
-  _globals['_MONITORDATA']._serialized_end=1477
-  _globals['_MONITORLISTRESPONSE']._serialized_start=1479
-  _globals['_MONITORLISTRESPONSE']._serialized_end=1543
-  _globals['_MONITORINFO']._serialized_start=1545
-  _globals['_MONITORINFO']._serialized_end=1609
-  _globals['_INSTRUMENTSERVER']._serialized_start=1612
-  _globals['_INSTRUMENTSERVER']._serialized_end=3212
+  _globals['_FILEREQ']._serialized_end=477
+  _globals['_FILERESP']._serialized_start=479
+  _globals['_FILERESP']._serialized_end=538
+  _globals['_SAVEFILEREQ']._serialized_start=540
+  _globals['_SAVEFILEREQ']._serialized_end=624
+  _globals['_FILETIMEREQ']._serialized_start=626
+  _globals['_FILETIMEREQ']._serialized_end=712
+  _globals['_FILETIMERESP']._serialized_start=714
+  _globals['_FILETIMERESP']._serialized_end=765
+  _globals['_FOLDERREQ']._serialized_start=767
+  _globals['_FOLDERREQ']._serialized_end=813
+  _globals['_COPYFOLDERREQ']._serialized_start=815
+  _globals['_COPYFOLDERREQ']._serialized_end=870
+  _globals['_FILELISTRESP']._serialized_start=872
+  _globals['_FILELISTRESP']._serialized_end=901
+  _globals['_STREAMREQ']._serialized_start=903
+  _globals['_STREAMREQ']._serialized_end=934
+  _globals['_STARTMONITORREQ']._serialized_start=936
+  _globals['_STARTMONITORREQ']._serialized_end=1000
+  _globals['_DATAFRAME']._serialized_start=1002
+  _globals['_DATAFRAME']._serialized_end=1081
+  _globals['_CODEREQ']._serialized_start=1083
+  _globals['_CODEREQ']._serialized_end=1133
+  _globals['_CODEFRAME']._serialized_start=1135
+  _globals['_CODEFRAME']._serialized_end=1196
+  _globals['_INSTRUMENTSERVER']._serialized_start=1199
+  _globals['_INSTRUMENTSERVER']._serialized_end=2807
 # @@protoc_insertion_point(module_scope)

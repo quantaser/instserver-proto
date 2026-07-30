@@ -31,6 +31,12 @@ service InstrumentServer {
   rpc ListTools(Empty) returns (FileListResp);
   rpc ListTemplates(Empty) returns (FileListResp);
 
+  // Monitor 控制（24/7 儀器讀值；獨立 lane，不佔 experiment session slot）
+  rpc StartMonitor(StartMonitorReq) returns (StatusResp);   // 回傳 session_id
+  rpc StopMonitor(SessionReq) returns (StatusResp);
+  rpc GetMonitorSchema(SchemaReq) returns (SchemaResp);     // 只填 output_schema
+  rpc ListMonitors(Empty) returns (ExpListResp);            // 列 monitors/ 目錄
+
   // ═══════════════════════════════════════════
   // Data Plane — stream + msgpack payload
   // ═══════════════════════════════════════════
@@ -41,6 +47,9 @@ service InstrumentServer {
   // 互動式程式碼 streaming
   rpc RunCode(CodeReq) returns (stream CodeFrame);
   rpc StopCode(SessionReq) returns (StatusResp);
+
+  // Monitor 讀值 streaming（復用 DataFrame 封包 + build_patches）
+  rpc StreamMonitor(StreamReq) returns (stream DataFrame);
 }
 
 // ── Control Plane Messages ──
@@ -85,6 +94,7 @@ message ExpListResp {
 message FileReq {
   string script_name = 1;
   string file_type = 2;       // "python" | "input" | "output" | "tool" | "template"
+  string kind = 3;            // "" or "exp" = experiment, "monitor" = monitor script
 }
 
 message FileResp {
@@ -97,12 +107,14 @@ message SaveFileReq {
   string script_name = 1;
   string file_type = 2;
   string content = 3;
+  string kind = 4;            // "" or "exp" = experiment, "monitor" = monitor script
 }
 
 message FileTimeReq {
   string script_name = 1;
   string file_type = 2;
   string timestamp = 3;
+  string kind = 4;            // "" or "exp" = experiment, "monitor" = monitor script
 }
 
 message FileTimeResp {
@@ -112,6 +124,7 @@ message FileTimeResp {
 
 message FolderReq {
   string script_name = 1;
+  string kind = 2;            // "" or "exp" = experiment, "monitor" = monitor script
 }
 
 message CopyFolderReq {
@@ -127,6 +140,11 @@ message FileListResp {
 
 message StreamReq {
   string session_id = 1;
+}
+
+message StartMonitorReq {
+  string script_name = 1;
+  double interval_seconds = 2;   // poll interval (from the Monitor DB field)
 }
 
 message DataFrame {
