@@ -62,6 +62,7 @@ message SessionReq {
 
 message AssignReq {
   string experiment_name = 1;
+  string calibration_state = 2;   // bound CalibrationState name; empty = unbound
 }
 
 message StatusResp {
@@ -145,6 +146,7 @@ message StreamReq {
 message StartMonitorReq {
   string script_name = 1;
   double interval_seconds = 2;   // poll interval (from the Monitor DB field)
+  string calibration_state = 3;  // bound CalibrationState name; empty = unbound
 }
 
 message DataFrame {
