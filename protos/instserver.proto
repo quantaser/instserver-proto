@@ -26,6 +26,7 @@ service InstrumentServer {
   rpc CheckFileTime(FileTimeReq) returns (FileTimeResp);
   rpc CreateFolder(FolderReq) returns (StatusResp);
   rpc CopyFolder(CopyFolderReq) returns (StatusResp);
+  rpc DeleteFile(FileReq) returns (StatusResp);
 
   // 檔案列表
   rpc ListTools(Empty) returns (FileListResp);

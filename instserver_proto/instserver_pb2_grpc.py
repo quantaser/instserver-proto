@@ -113,6 +113,11 @@ class InstrumentServerStub(object):
                 request_serializer=instserver__pb2.CopyFolderReq.SerializeToString,
                 response_deserializer=instserver__pb2.StatusResp.FromString,
                 _registered_method=True)
+        self.DeleteFile = channel.unary_unary(
+                '/instserver.InstrumentServer/DeleteFile',
+                request_serializer=instserver__pb2.FileReq.SerializeToString,
+                response_deserializer=instserver__pb2.StatusResp.FromString,
+                _registered_method=True)
         self.ListTools = channel.unary_unary(
                 '/instserver.InstrumentServer/ListTools',
                 request_serializer=instserver__pb2.Empty.SerializeToString,
@@ -260,6 +265,12 @@ class InstrumentServerServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def CopyFolder(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteFile(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -413,6 +424,11 @@ def add_InstrumentServerServicer_to_server(servicer, server):
             'CopyFolder': grpc.unary_unary_rpc_method_handler(
                     servicer.CopyFolder,
                     request_deserializer=instserver__pb2.CopyFolderReq.FromString,
+                    response_serializer=instserver__pb2.StatusResp.SerializeToString,
+            ),
+            'DeleteFile': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteFile,
+                    request_deserializer=instserver__pb2.FileReq.FromString,
                     response_serializer=instserver__pb2.StatusResp.SerializeToString,
             ),
             'ListTools': grpc.unary_unary_rpc_method_handler(
@@ -874,6 +890,33 @@ class InstrumentServer(object):
             target,
             '/instserver.InstrumentServer/CopyFolder',
             instserver__pb2.CopyFolderReq.SerializeToString,
+            instserver__pb2.StatusResp.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteFile(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/instserver.InstrumentServer/DeleteFile',
+            instserver__pb2.FileReq.SerializeToString,
             instserver__pb2.StatusResp.FromString,
             options,
             channel_credentials,

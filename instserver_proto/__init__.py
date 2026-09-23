@@ -1,6 +1,6 @@
 """instserver-proto: gRPC proto stubs for InstServer ↔ LabMaster4 communication."""
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 from .instserver_pb2 import *  # noqa: F401,F403
 from . import instserver_pb2 as pb2
