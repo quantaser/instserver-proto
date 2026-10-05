@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "instserver-proto"
-version = "0.4.0"
+version = "1.0.0"
 description = "gRPC proto definitions + compiled stubs for InstServer ↔ LabMaster4 communication"
 authors = [{ name = "Quantaser", email = "tina@quantaser.com" }]
 requires-python = ">=3.10"
