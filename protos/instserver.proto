@@ -64,6 +64,11 @@ message SessionReq {
 message AssignReq {
   string experiment_name = 1;
   string calibration_state = 2;   // bound CalibrationState name; empty = unbound
+  // Expanded IO schema (msgpack of the top-level {"name": "top", ...} dict) sent by
+  // LabMaster4 when the on-disk <exp>_input.json / _output.json contains template
+  // `$ref` nodes. Empty = InstServer reads the json file from disk as before.
+  bytes input_schema = 3;
+  bytes output_schema = 4;
 }
 
 message StatusResp {
